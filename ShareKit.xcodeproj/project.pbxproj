@@ -664,6 +664,18 @@
 		ACF7F8301643B497002947F0 /* WXApiObject.h in Sources */ = {isa = PBXBuildFile; fileRef = AC67CE4E1643A46200C74ECE /* WXApiObject.h */; };
 		ACF7F8331643B543002947F0 /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC67CE4C1643A46200C74ECE /* libWeChatSDK_armv7_armv7s.a */; };
 		ACF7F8341643B563002947F0 /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC67CE4C1643A46200C74ECE /* libWeChatSDK_armv7_armv7s.a */; };
+		AF596D52169D3DB6005B139F /* SHKQQConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = AF596D51169D3DB6005B139F /* SHKQQConnect.m */; };
+		AF596D6B169D3DD4005B139F /* buttonhover.png in Resources */ = {isa = PBXBuildFile; fileRef = AF596D56169D3DD4005B139F /* buttonhover.png */; };
+		AF596D6C169D3DD4005B139F /* buttonnormal.png in Resources */ = {isa = PBXBuildFile; fileRef = AF596D57169D3DD4005B139F /* buttonnormal.png */; };
+		AF596D6D169D3DD4005B139F /* close_btn_src_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = AF596D58169D3DD4005B139F /* close_btn_src_normal.png */; };
+		AF596D6E169D3DD4005B139F /* closeimg.png in Resources */ = {isa = PBXBuildFile; fileRef = AF596D59169D3DD4005B139F /* closeimg.png */; };
+		AF596D70169D3DD4005B139F /* title_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AF596D5B169D3DD4005B139F /* title_btn.png */; };
+		AF596D71169D3DD4005B139F /* APIBase.m in Sources */ = {isa = PBXBuildFile; fileRef = AF596D5F169D3DD4005B139F /* APIBase.m */; };
+		AF596D72169D3DD4005B139F /* APIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AF596D61169D3DD4005B139F /* APIResponse.m */; };
+		AF596D73169D3DD4005B139F /* TencentLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF596D63169D3DD4005B139F /* TencentLoginView.m */; };
+		AF596D74169D3DD4005B139F /* TencentOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = AF596D65169D3DD4005B139F /* TencentOAuth.m */; };
+		AF596D75169D3DD4005B139F /* TencentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AF596D67169D3DD4005B139F /* TencentRequest.m */; };
+		AF596D76169D3DD4005B139F /* TencentTargetSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = AF596D69169D3DD4005B139F /* TencentTargetSelector.m */; };
 		C0D3077B147BDC8100E74EA3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D3077A147BDC8100E74EA3 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -1076,6 +1088,26 @@
 		AC91A965163908E60055FEF6 /* SinaWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboRequest.m; sourceTree = "<group>"; };
 		ACF7F8151643B2B6002947F0 /* libTencent Weixin SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTencent Weixin SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACF7F82D1643B45B002947F0 /* libTencent Weixin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTencent Weixin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF596D50169D3DB6005B139F /* SHKQQConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKQQConnect.h; sourceTree = "<group>"; };
+		AF596D51169D3DB6005B139F /* SHKQQConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKQQConnect.m; sourceTree = "<group>"; };
+		AF596D54169D3DD4005B139F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = Submodules/TencentOAuth/README.md; sourceTree = SOURCE_ROOT; };
+		AF596D56169D3DD4005B139F /* buttonhover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonhover.png; sourceTree = "<group>"; };
+		AF596D57169D3DD4005B139F /* buttonnormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonnormal.png; sourceTree = "<group>"; };
+		AF596D58169D3DD4005B139F /* close_btn_src_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_btn_src_normal.png; sourceTree = "<group>"; };
+		AF596D59169D3DD4005B139F /* closeimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeimg.png; sourceTree = "<group>"; };
+		AF596D5B169D3DD4005B139F /* title_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_btn.png; sourceTree = "<group>"; };
+		AF596D5E169D3DD4005B139F /* APIBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIBase.h; sourceTree = "<group>"; };
+		AF596D5F169D3DD4005B139F /* APIBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIBase.m; sourceTree = "<group>"; };
+		AF596D60169D3DD4005B139F /* APIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIResponse.h; sourceTree = "<group>"; };
+		AF596D61169D3DD4005B139F /* APIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIResponse.m; sourceTree = "<group>"; };
+		AF596D62169D3DD4005B139F /* TencentLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TencentLoginView.h; sourceTree = "<group>"; };
+		AF596D63169D3DD4005B139F /* TencentLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TencentLoginView.m; sourceTree = "<group>"; };
+		AF596D64169D3DD4005B139F /* TencentOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TencentOAuth.h; sourceTree = "<group>"; };
+		AF596D65169D3DD4005B139F /* TencentOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TencentOAuth.m; sourceTree = "<group>"; };
+		AF596D66169D3DD4005B139F /* TencentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TencentRequest.h; sourceTree = "<group>"; };
+		AF596D67169D3DD4005B139F /* TencentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TencentRequest.m; sourceTree = "<group>"; };
+		AF596D68169D3DD4005B139F /* TencentTargetSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TencentTargetSelector.h; sourceTree = "<group>"; };
+		AF596D69169D3DD4005B139F /* TencentTargetSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TencentTargetSelector.m; sourceTree = "<group>"; };
 		B7EFCD8A14C6B966004910F1 /* SHKDiigo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKDiigo.h; sourceTree = "<group>"; };
 		B7EFCD8B14C6B966004910F1 /* SHKDiigo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKDiigo.m; sourceTree = "<group>"; };
 		BA465F1D14CC3C5A00B52394 /* SHKPrint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKPrint.h; sourceTree = "<group>"; };
@@ -1931,6 +1963,7 @@
 		43A536C011DBE3B9004A1712 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AF596D4F169D3DB5005B139F /* QQ Connect */,
 				AC42D6E2163638C7002FD7C6 /* Douban */,
 				AC42D6E6163638C7002FD7C6 /* NetEase Weibo */,
 				AC42D6E9163638C7002FD7C6 /* Plurk */,
@@ -2431,6 +2464,59 @@
 			name = "SSO SDK";
 			path = "Submodules/sinaweibo-ios-sdk/src/SinaWeibo";
 			sourceTree = SOURCE_ROOT;
+		};
+		AF596D4F169D3DB5005B139F /* QQ Connect */ = {
+			isa = PBXGroup;
+			children = (
+				AF596D5C169D3DD4005B139F /* TencentOAuth */,
+				AF596D50169D3DB6005B139F /* SHKQQConnect.h */,
+				AF596D51169D3DB6005B139F /* SHKQQConnect.m */,
+			);
+			path = "QQ Connect";
+			sourceTree = "<group>";
+		};
+		AF596D55169D3DD4005B139F /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				AF596D56169D3DD4005B139F /* buttonhover.png */,
+				AF596D57169D3DD4005B139F /* buttonnormal.png */,
+				AF596D58169D3DD4005B139F /* close_btn_src_normal.png */,
+				AF596D59169D3DD4005B139F /* closeimg.png */,
+				AF596D5B169D3DD4005B139F /* title_btn.png */,
+			);
+			name = Res;
+			path = Submodules/TencentOAuth/Res;
+			sourceTree = SOURCE_ROOT;
+		};
+		AF596D5C169D3DD4005B139F /* TencentOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				AF596D54169D3DD4005B139F /* README.md */,
+				AF596D55169D3DD4005B139F /* Res */,
+				AF596D5D169D3DD4005B139F /* API */,
+				AF596D62169D3DD4005B139F /* TencentLoginView.h */,
+				AF596D63169D3DD4005B139F /* TencentLoginView.m */,
+				AF596D64169D3DD4005B139F /* TencentOAuth.h */,
+				AF596D65169D3DD4005B139F /* TencentOAuth.m */,
+				AF596D66169D3DD4005B139F /* TencentRequest.h */,
+				AF596D67169D3DD4005B139F /* TencentRequest.m */,
+				AF596D68169D3DD4005B139F /* TencentTargetSelector.h */,
+				AF596D69169D3DD4005B139F /* TencentTargetSelector.m */,
+			);
+			name = TencentOAuth;
+			path = Submodules/TencentOAuth/TencentOAuth;
+			sourceTree = SOURCE_ROOT;
+		};
+		AF596D5D169D3DD4005B139F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				AF596D5E169D3DD4005B139F /* APIBase.h */,
+				AF596D5F169D3DD4005B139F /* APIBase.m */,
+				AF596D60169D3DD4005B139F /* APIResponse.h */,
+				AF596D61169D3DD4005B139F /* APIResponse.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
 		};
 		B7EFCD8914C6B966004910F1 /* Diigo */ = {
 			isa = PBXGroup;
@@ -3966,6 +4052,11 @@
 				43A5382811DBE480004A1712 /* example.pdf in Resources */,
 				43A5382911DBE480004A1712 /* sanFran.jpg in Resources */,
 				43C91D1D11EB963600F31FAE /* MainWindow-iPad.xib in Resources */,
+				AF596D6B169D3DD4005B139F /* buttonhover.png in Resources */,
+				AF596D6C169D3DD4005B139F /* buttonnormal.png in Resources */,
+				AF596D6D169D3DD4005B139F /* close_btn_src_normal.png in Resources */,
+				AF596D6E169D3DD4005B139F /* closeimg.png in Resources */,
+				AF596D70169D3DD4005B139F /* title_btn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3997,6 +4088,13 @@
 				43A5383A11DBE493004A1712 /* RootViewController.m in Sources */,
 				43A5383B11DBE493004A1712 /* ShareKitAppDelegate.m in Sources */,
 				7AA40570146F1D6400685C81 /* ShareKitDemoConfigurator.m in Sources */,
+				AF596D52169D3DB6005B139F /* SHKQQConnect.m in Sources */,
+				AF596D71169D3DD4005B139F /* APIBase.m in Sources */,
+				AF596D72169D3DD4005B139F /* APIResponse.m in Sources */,
+				AF596D73169D3DD4005B139F /* TencentLoginView.m in Sources */,
+				AF596D74169D3DD4005B139F /* TencentOAuth.m in Sources */,
+				AF596D75169D3DD4005B139F /* TencentRequest.m in Sources */,
+				AF596D76169D3DD4005B139F /* TencentTargetSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

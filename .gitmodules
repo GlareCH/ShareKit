@@ -16,3 +16,6 @@
 [submodule "Submodules/sinaweibo-ios-sdk"]
 	path = Submodules/sinaweibo-ios-sdk
 	url = https://github.com/mobileresearch/weibo_ios_sdk_sso-oauth.git
+[submodule "Submodules/TencentOAuth"]
+	path = Submodules/TencentOAuth
+	url = https://github.com/GlareCH/TencentOAuth.git
