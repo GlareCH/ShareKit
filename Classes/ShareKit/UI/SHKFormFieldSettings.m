@@ -44,6 +44,11 @@
 	[super dealloc];
 }
 
++ (id)key:(NSString *)k
+{
+    return [self label:nil key:k type:SHKFormFieldTypeText start:nil];
+}
+
 + (id)label:(NSString *)l key:(NSString *)k type:(SHKFormFieldType)t start:(NSString *)s
 {
 	return [SHKFormFieldSettings label:l key:k type:t start:s optionPickerInfo:nil optionDetailLabelDefault:nil];

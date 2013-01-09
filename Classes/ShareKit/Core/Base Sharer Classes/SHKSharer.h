@@ -50,7 +50,10 @@ typedef enum
 	SHKPendingNone,
 	SHKPendingShare, //when ShareKit detects invalid credentials BEFORE user sends. User continues editing share content after login.
 	SHKPendingRefreshToken, //when OAuth token expires
-    SHKPendingSend, //when ShareKit detects invalid credentials AFTER user sends. Item is resent without showing edit dialogue (user edited already). 
+    SHKPendingSend, //when ShareKit detects invalid credentials AFTER user sends. Item is resent without showing edit dialogue (user edited already).
+    
+    SHKPendingUserInfoAccess //continue request user info  after login.
+    
 } SHKSharerPendingAction;
 
 
@@ -138,6 +141,11 @@ typedef enum
 - (void)share;
 
 #pragma mark -
+#pragma mark Access User Info
+- (void)accessUserInfo;
+- (void)sendUserInfoAccessRequest;
+
+#pragma mark -
 #pragma mark Authentication
 
 - (BOOL)isAuthorized;
@@ -188,6 +196,10 @@ typedef enum
 
 #pragma mark -
 #pragma mark Delegate Notifications
+
+- (void)userInfoAccessDidStart;
+- (void)userInfoAccessDidFailWithError:(NSError *)error;
+- (void)userInfoAccessDidFinishWithUserInfo:(SHKItem *)userItem;
 
 - (void)sendDidStart;
 - (void)sendDidFinish;

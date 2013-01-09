@@ -27,12 +27,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHKOAuthSharer.h"
+#import "SHKSharer.h"
 #import "SHKFormControllerLargeTextField.h"
 #import "SinaWeibo.h"
 #import "SinaWeiboRequest.h"
 
-@interface SHKSinaWeibo : SHKOAuthSharer <SHKFormControllerLargeTextFieldDelegate, SinaWeiboDelegate, SinaWeiboRequestDelegate>
+@interface SHKSinaWeibo : SHKSharer <SHKFormControllerLargeTextFieldDelegate, SinaWeiboDelegate, SinaWeiboRequestDelegate>
 
 + (BOOL)handleOpenURL:(NSURL*)url;
 @end

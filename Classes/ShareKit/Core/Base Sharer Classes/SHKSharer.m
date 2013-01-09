@@ -306,6 +306,24 @@
 		[self show];
 }
 
+#pragma mark -
+#pragma mark Access User Info
+
+- (void)accessUserInfo
+{
+    // isAuthorized - If service requires login and details have not been saved, present login dialog
+	if (![self authorize])
+		self.pendingAction = SHKPendingUserInfoAccess;
+    
+    else
+        [self sendUserInfoAccessRequest];
+}
+
+- (void)sendUserInfoAccessRequest
+{
+    // Does Nothing
+	// Your subclass should implement the request logic
+}
 
 #pragma mark -
 #pragma mark Authentication
@@ -468,7 +486,7 @@
 // Credit: GreatWiz
 + (BOOL)isServiceAuthorized 
 {	
-	SHKSharer *controller = [[self alloc] init];
+	SHKSharer *controller = [[[self class] alloc] init];
 	BOOL isAuthorized = [controller isAuthorized];
 	[controller release];
 	
@@ -734,6 +752,14 @@
             //to show alert if reshare finishes with error (see SHKSharerDelegate)
             self.pendingAction = SHKPendingNone;
 			break;
+        case SHKPendingUserInfoAccess:
+            
+            //reaccess
+            [self accessUserInfo];
+            
+            //do not reset the pendingAction to SHKPendingNone,
+            //later will use this value to detect current pendingAction.
+            break;
 		default:
 			break;
 	}
@@ -757,6 +783,26 @@
 
 #pragma mark -
 #pragma mark Delegate Notifications
+
+- (void)userInfoAccessDidStart
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHKUserInfoAccessDidStartNotification" object:self];
+}
+
+- (void)userInfoAccessDidFailWithError:(NSError *)error
+{
+    self.lastError = error;
+    
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"SHKUserInfoAccessDidFailWithError" object:self];
+    
+	if ([self.shareDelegate respondsToSelector:@selector(sharer:failedWithError:shouldRelogin:)])
+		[self.shareDelegate sharer:self failedWithError:error shouldRelogin:NO];
+
+}
+- (void)userInfoAccessDidFinishWithUserInfo:(SHKItem *)userInfo
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHKUserInfoAccessDidFinishNotification" object:self  userInfo:[NSDictionary dictionaryWithObject:userInfo forKey:@"UserInfo"]];
+}
 
 - (void)sendDidStart
 {		

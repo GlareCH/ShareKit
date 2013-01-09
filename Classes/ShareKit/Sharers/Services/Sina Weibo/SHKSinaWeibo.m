@@ -37,12 +37,12 @@
 
 #define API_DOMAIN  @"http://api.t.sina.com.cn"
 
-static NSString *const kSHKStoredItemKey=@"kSHKSinaWeiboStoredItem";
 static NSString *const kSHKSinaWeiboAccessTokenKey=@"AccessTokenKey";
-static NSString *const kSHKSinaWeiboExpiryDateKey=@"ExpirationDateKey";
+static NSString *const kSHKSinaWeiboExpirationTimeIntervalSine1970Key=@"ExpirationTimeIntervalSine1970";
 static NSString *const kSHKSinaWeiboUserIdKey =@"UserIDKey";
-static NSString *const kSHKSinaWeiboRefreshTokenKey =@"refresh_token";
+static NSString *const kSHKSinaWeiboRefreshTokenKey =@"RefreshToken";
 
+static NSString *const kSHKStoredItemKey=@"kSHKSinaWeiboStoredItem";
 static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 
 @interface SHKSinaWeibo ()
@@ -71,16 +71,12 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
                                                 appSecret:SHKCONFIG(sinaWeiboConsumerSecret)
                                            appRedirectURI:SHKCONFIG(sinaWeiboCallbackUrl)
                                               andDelegate:nil];
-            
-            NSDictionary *sinaweiboInfo = [[NSUserDefaults standardUserDefaults] objectForKey:kSHKStoredItemKey];
-            if ([sinaweiboInfo objectForKey:kSHKSinaWeiboAccessTokenKey]
-                && [sinaweiboInfo objectForKey:kSHKSinaWeiboExpiryDateKey]
-                && [sinaweiboInfo objectForKey:kSHKSinaWeiboUserIdKey])
-            {
-                sinaWeibo.accessToken = [sinaweiboInfo objectForKey:kSHKSinaWeiboAccessTokenKey];
-                sinaWeibo.expirationDate = [sinaweiboInfo objectForKey:kSHKSinaWeiboExpiryDateKey];
-                sinaWeibo.userID = [sinaweiboInfo objectForKey:kSHKSinaWeiboUserIdKey];
-            }
+            NSString *sharerId = [SHKSinaWeibo sharerId];
+            sinaWeibo.accessToken = [SHK getAuthValueForKey:kSHKSinaWeiboAccessTokenKey forSharer:sharerId];
+            NSTimeInterval timeInterval = [[SHK getAuthValueForKey:kSHKSinaWeiboExpirationTimeIntervalSine1970Key forSharer:sharerId] doubleValue];
+            sinaWeibo.expirationDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+            sinaWeibo.userID = [SHK getAuthValueForKey:kSHKSinaWeiboUserIdKey forSharer:sharerId];
+            sinaWeibo.refreshToken = [SHK getAuthValueForKey:kSHKSinaWeiboRefreshTokenKey forSharer:sharerId];
         }
     }
     
@@ -90,14 +86,12 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 + (void)storeAuthData
 {
     SinaWeibo *sinaweibo = [SHKSinaWeibo sinaWeibo];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                      sinaweibo.accessToken, kSHKSinaWeiboAccessTokenKey,
-                                                      sinaweibo.expirationDate, kSHKSinaWeiboExpiryDateKey,
-                                                      sinaweibo.userID, kSHKSinaWeiboUserIdKey,
-                                                      sinaweibo.refreshToken, kSHKSinaWeiboRefreshTokenKey, nil]
-                                              forKey:kSHKStoredItemKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSString *sharer = [self sharerId];
+    [SHK setAuthValue:sinaweibo.accessToken forKey:kSHKSinaWeiboAccessTokenKey forSharer:sharer];
+    NSString *timeInterval = [[NSNumber numberWithDouble:[sinaweibo.expirationDate timeIntervalSince1970]] stringValue];
+    [SHK setAuthValue:timeInterval forKey:kSHKSinaWeiboExpirationTimeIntervalSine1970Key forSharer:sharer];
+    [SHK setAuthValue:sinaweibo.userID forKey:kSHKSinaWeiboUserIdKey forSharer:sharer];
+    [SHK setAuthValue:sinaweibo.refreshToken forKey:kSHKSinaWeiboRefreshTokenKey forSharer:sharer];
 }
 
 + (BOOL)handleOpenURL:(NSURL*)url
@@ -110,8 +104,7 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
     {
         SHKSinaWeibo *sinaWeiboSharer = [[[SHKSinaWeibo alloc] init] autorelease]; //released in sinaweiboDidLogIn
         
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:kSHKStoredItemKey])
-        {
+        if ([self isServiceAuthorized]) {
             sinaWeiboSharer.pendingAction = SHKPendingShare;
         }
         
@@ -151,27 +144,14 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 }
 
 #pragma mark -
-#pragma mark Configuration : Dynamic Enable
-
-- (BOOL)shouldAutoShare
-{
-	return NO;
-}
-
-#pragma mark -
 #pragma mark Authentication
 
 - (BOOL)isAuthorized
 {
-    SinaWeibo *sinaWeibo = [SHKSinaWeibo sinaWeibo];
-    if ([sinaWeibo isAuthValid]) return YES;
+    if ([[SHKSinaWeibo sinaWeibo] isAuthValid])
+        return YES;
     
-    NSDictionary *sinaweiboInfo = [[NSUserDefaults standardUserDefaults] objectForKey:kSHKSinaWeiboAccessTokenKey];
-    sinaWeibo.accessToken = [sinaweiboInfo objectForKey:kSHKSinaWeiboAccessTokenKey];
-    sinaWeibo.expirationDate = [sinaweiboInfo objectForKey:kSHKSinaWeiboExpiryDateKey];
-    sinaWeibo.userID = [sinaweiboInfo objectForKey:kSHKSinaWeiboUserIdKey];
-    
-    return [sinaWeibo isAuthValid];
+    return [super isAuthorized];
 }
 
 - (void)promptAuthorization
@@ -183,8 +163,22 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 
 + (void)logout
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSHKStoredItemKey];
+    NSString *shareId = [SHKSinaWeibo sharerId];
+    for (SHKFormFieldSettings *field in [self authorizationFormFields]) {
+        [SHK removeAuthValueForKey:field.key forSharer:shareId];
+    }
     [[SHKSinaWeibo sinaWeibo] logOut];
+}
+
+#pragma mark Authorization Form
++ (NSArray *)authorizationFormFields
+{
+    return @[
+    [SHKFormFieldSettings key:kSHKSinaWeiboAccessTokenKey],
+    [SHKFormFieldSettings key:kSHKSinaWeiboExpirationTimeIntervalSine1970Key],
+    [SHKFormFieldSettings key:kSHKSinaWeiboUserIdKey],
+    [SHKFormFieldSettings key:kSHKSinaWeiboRefreshTokenKey]
+    ];
 }
 
 #pragma mark -
@@ -225,8 +219,26 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 }
 
 #pragma mark -
+#pragma mark Access User Info
 
-- (BOOL)prepareItem 
+- (void)sendUserInfoAccessRequest
+{
+    SinaWeibo *sinaweibo = [SHKSinaWeibo sinaWeibo];
+    [sinaweibo requestWithURL:@"users/show.json"
+                       params:[NSMutableDictionary dictionaryWithDictionary:
+                               @{@"uid":[SHK getAuthValueForKey:kSHKSinaWeiboUserIdKey forSharer:[SHKSinaWeibo sharerId]]}]
+                   httpMethod:@"GET"
+                     delegate:self];
+    
+    [self retain]; // must retain, because SinaWeibo does not retain its delegates. Released in callback.
+    
+    // Notify delegate
+    [self userInfoAccessDidStart];
+}
+
+#pragma mark -
+
+- (BOOL)prepareItem
 {
 	BOOL result = YES;
 	
@@ -413,12 +425,19 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 
 - (void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo
 {
+    SHKLog(@"sinaweiboDidLogIn");
+    
     [SHKSinaWeibo storeAuthData];
     
-    [self authDidFinish:true];
+    [self authDidFinish:YES];
 	
-    if (self.item)
+    if (self.item ||                                    // log in to share item
+        SHKPendingUserInfoAccess == self.pendingAction) // or to access user info
         [self tryPendingAction];
+    else {
+        [self release]; //see [self promptAuthorization]
+        [[SHKSinaWeibo sinaWeibo] setDelegate:nil];
+    }
 }
 
 - (void)sinaweiboDidLogOut:(SinaWeibo *)sinaweibo
@@ -427,6 +446,7 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
     [SHKSinaWeibo logout];
     
     [self release]; // see [self send]
+    [[SHKSinaWeibo sinaWeibo] setDelegate:nil];
 }
 
 - (void)sinaweiboLogInDidCancel:(SinaWeibo *)sinaweibo
@@ -434,15 +454,17 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
     SHKLog(@"sinaweiboLogInDidCancel");
     
     [self authDidFinish:NO]; 
-    [self release]; // see [self send]
+    [self release]; // see [self promptAuthorization]
+    [[SHKSinaWeibo sinaWeibo] setDelegate:nil];
 }
 
 - (void)sinaweibo:(SinaWeibo *)sinaweibo logInDidFailWithError:(NSError *)error
 {
     SHKLog(@"sinaweibo logInDidFailWithError %@", error);
-    [self authDidFinish:NO];
+    [self sendDidFailWithError:error];
     
     [self release]; // see [self send]
+    [[SHKSinaWeibo sinaWeibo] setDelegate:nil];
 }
 
 - (void)sinaweibo:(SinaWeibo *)sinaweibo accessTokenInvalidOrExpired:(NSError *)error
@@ -453,6 +475,7 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
     [self authDidFinish:NO];
     
     [self release]; // see [self send]
+    [[SHKSinaWeibo sinaWeibo] setDelegate:nil];
 }
 
 #pragma mark - SinaWeiboRequest Delegate
@@ -464,15 +487,32 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
         SHKLog(@"Post status failed with error : %@", error);
     }
     
-    [self sendDidFailWithError:error];
-    
+    if (SHKPendingUserInfoAccess == self.pendingAction)
+        [self userInfoAccessDidFailWithError:error];
+    else
+        [self sendDidFailWithError:error];
+
     [self release]; // see [self send]
+    [[SHKSinaWeibo sinaWeibo] setDelegate:nil];
 }
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
 {
-    [self sendDidFinish];
+    
+    if (SHKPendingUserInfoAccess == self.pendingAction)
+    {
+        SHKItem *userInfo = [[[SHKItem alloc] init] autorelease];
+        userInfo.shareType = SHKShareTypeUserInfo;
+        [userInfo setCustomValue:[result valueForKey:@"id"] forKey:@"ID"];
+        [userInfo setCustomValue:[result valueForKey:@"screen_name"] forKey:@"ScreenName"];
+        [userInfo setCustomValue:[result valueForKey:@"profile_image_url"] forKey:@"ProfileImageUrl"];
+        [self userInfoAccessDidFinishWithUserInfo:userInfo];
+    }
+    else
+        [self sendDidFinish];
+    
     [self release]; // see [self send]
+    [[SHKSinaWeibo sinaWeibo] setDelegate:nil];
 }
 
 @end

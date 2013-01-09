@@ -70,6 +70,7 @@ typedef enum
 @property (nonatomic, retain) NSMutableDictionary *optionPickerInfo;
 @property (nonatomic, retain) NSString *optionDetailLabelDefault;
 
++ (id)key:(NSString *)k;
 + (id)label:(NSString *)l key:(NSString *)k type:(SHKFormFieldType)t start:(NSString *)s;
 + (id)label:(NSString *)l key:(NSString *)k type:(SHKFormFieldType)t start:(NSString *)s optionPickerInfo:(NSMutableDictionary *)oi optionDetailLabelDefault:(NSString *)od;
 - (NSString*) optionPickerValueForIndexes:(NSString*)indexes;
