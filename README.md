@@ -1,3 +1,12 @@
+================================================================================
+
+By GlareCH
+Todo:
+     1. Add Taobao OAuth
+     2. Add share to QQ Connect
+     3. Use oauth2.0-client
+
+================================================================================
 # 关于 ShareKit
 
 [Sharekit](https://github.com/ShareKit/ShareKit) 在社区的驱动下迎来了 2.0 版本的重生（原开发者已不再维护）。
