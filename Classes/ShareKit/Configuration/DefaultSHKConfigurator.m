@@ -59,6 +59,25 @@
  leaving that decision up to the user.
  */
 
+// QQ Connect - http://connect.qq.com/
+
+- (NSString*)qqConsumerKey
+{
+    return @"";
+}
+- (NSString*)qqConsumerSecret
+{
+    return @"";
+}
+- (NSString*)qqRedirectURI
+{
+    return @"www.qq.com";
+}
+- (NSArray*)qqPermissions
+{
+    return @[@"get_user_info",@"add_share"];
+}
+
 // Sina Weibo - http://open.weibo.com/
 
 // If you want to force use of old-style, for example to ensure

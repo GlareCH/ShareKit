@@ -50,6 +50,15 @@
 - (NSArray*)defaultFavoriteImageSharers;
 - (NSArray*)defaultFavoriteTextSharers;
 - (NSArray*)defaultFavoriteFileSharers;
+
+#pragma mark - China
+#pragma mark QQ Connect
+- (NSString*)qqConsumerKey;
+- (NSString*)qqConsumerSecret;
+- (NSString*)qqRedirectURI;
+- (NSArray*)qqPermissions;
+
+#pragma mark Sina Weibo
 - (NSNumber*)forcePreSinaWeiboAccess;
 - (NSString*)sinaWeiboConsumerKey;
 - (NSString*)sinaWeiboConsumerSecret;
@@ -57,29 +66,38 @@
 - (NSNumber*)sinaWeiboUseXAuth;
 - (NSString*)sinaWeiboScreenname;
 - (NSString*)sinaWeiboUserID;
+
+#pragma mark 163 Weibo
 - (NSString*)netEaseWeiboConsumerKey;
 - (NSString*)netEaseWeiboConsumerSecret;
 - (NSString*)netEaseWeiboCallbackUrl;
 - (NSNumber*)netEaseWeiboUseXAuth;
 - (NSString*)netEaseaWeiboScreenname;
 - (NSString*)netEaseWeiboUserID;
+
+#pragma mark Tencent Weibo
 - (NSString*)tencentWeiboConsumerKey;
 - (NSString*)tencentWeiboConsumerSecret;
 - (NSString*)tencentWeiboCallbackUrl;
+
+#pragma mark Tencent Weixin
 - (NSString*)tencentWeixinAppId;
 - (NSString*)tencentWeixinAppKey;
+
+#pragma mark Douban
 - (NSString*)doubanConsumerKey;
 - (NSString*)doubanConsumerSecret;
 - (NSString*)doubanCallbackUrl;
+
+#pragma mark RenRen
 - (NSString*)renrenAppId;
 - (NSString*)renrenConsumerKey;
 - (NSString*)renrenConsumerSecret;
+
+#pragma mark - Other Countries
 - (NSString*)plurkConsumerKey;
 - (NSString*)plurkConsumerSecret;
 - (NSString*)plurkCallbackUrl;
-- (NSString*)vkontakteAppId;
-- (NSString*)facebookAppId;
-- (NSString*)facebookLocalAppId;
 - (NSString*)vkontakteAppId;
 - (NSString*)facebookAppId;
 - (NSString*)facebookLocalAppId;
