@@ -1,15 +1,12 @@
-================================================================================
-
-#By GlareCH
-
-##Todo:
+##Todo:By GlareCH
+============
 
 1. Add share to QQ Connect
-1. Add share to Taobao
+2. Add share to Taobao
+3. remove QQ and Sina SDK
 
-
-================================================================================
 # 关于 ShareKit
+============
 
 [Sharekit](https://github.com/ShareKit/ShareKit) 在社区的驱动下迎来了 2.0 版本的重生（原开发者已不再维护）。
 
