@@ -52,6 +52,11 @@
 - (NSArray*)defaultFavoriteFileSharers;
 
 #pragma mark - China
+#pragma mark Taobao
+- (NSString *)taobaoClientID;
+- (NSString *)taobaoClientSecret;
+- (NSString *)taobaoRedirectURL;
+
 #pragma mark QQ Connect
 - (NSString*)qqConsumerKey;
 - (NSString*)qqConsumerSecret;

@@ -40,6 +40,22 @@
  leaving that decision up to the user.
  */
 
+// Taobao - http://open.taobao.com/index.htm
+
+- (NSString *)taobaoClientID
+{
+    return @"21356337";
+}
+- (NSString *)taobaoClientSecret
+{
+    return @"fa844346131133b16249024de9ddcdda";
+}
+- (NSString *)taobaoRedirectURL
+{
+    return @"http://www.hoewo.com";
+}
+
+
 // Sina Weibo
 
 

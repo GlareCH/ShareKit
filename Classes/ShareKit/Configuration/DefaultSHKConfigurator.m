@@ -59,6 +59,20 @@
  leaving that decision up to the user.
  */
 
+// Taobao - http://open.taobao.com/index.htm
+- (NSString *)taobaoClientID
+{
+    return @"";
+}
+- (NSString *)taobaoClientSecret
+{
+    return @"";
+}
+- (NSString *)taobaoRedirectURL
+{
+    return @"";
+}
+
 // QQ Connect - http://connect.qq.com/
 
 - (NSString*)qqConsumerKey

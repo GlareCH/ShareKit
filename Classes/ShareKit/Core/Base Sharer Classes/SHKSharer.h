@@ -115,7 +115,6 @@ typedef enum
 
 - (id)init;
 
-
 #pragma mark -
 #pragma mark Share Item Loading Convenience Methods
 

@@ -38,6 +38,7 @@
 
 extern NSString * const SHKHideCurrentViewFinishedNotification;
 
+@class SHKSharer;
 @class SHKActionSheet;
 
 @interface SHK : NSObject 

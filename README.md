@@ -1,10 +1,12 @@
 ================================================================================
 
-By GlareCH
-Todo:
-     1. Add Taobao OAuth
-     2. Add share to QQ Connect
-     3. Use oauth2.0-client
+#By GlareCH
+
+##Todo:
+
+1. Add share to QQ Connect
+1. Add share to Taobao
+
 
 ================================================================================
 # 关于 ShareKit
